@@ -23,8 +23,6 @@ A REST API for a mechanic shop built with Flask and MySQL. Handles customers, me
 5. Run it
 6. API documentation available at http://127.0.0.1:5000/api/docs
 
-## Endpoints
-
 ### Customers
 
 - POST /customers/ - Create a customer
@@ -56,6 +54,13 @@ A REST API for a mechanic shop built with Flask and MySQL. Handles customers, me
 - GET /inventory/<id> - Get a specific part
 - PUT /inventory/<id> - Update a part
 - DELETE /inventory/<id> - Delete a part
+
+## Testing
+
+Run all tests with:
+
+- python -m unittest discover tests
+
 
 ## Status Codes
 
