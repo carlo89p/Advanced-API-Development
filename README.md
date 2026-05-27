@@ -9,6 +9,7 @@ A REST API for a mechanic shop built with Flask and MySQL. Handles customers, me
 - Marshmallow
 - Flask-Limiter
 - Flask-Caching
+- flask-swagger-ui
 - python-jose
 - MySQL
 - python-dotenv
@@ -20,6 +21,7 @@ A REST API for a mechanic shop built with Flask and MySQL. Handles customers, me
 3. Create a .env file in the root: SQLALCHEMY_DATABASE_URI=mysql+mysqlconnector://root:<your_password_here>@localhost/chop_shop
 4. Create the chop_shop database in MySQL
 5. Run it
+6. API documentation available at http://127.0.0.1:5000/api/docs
 
 ## Endpoints
 
