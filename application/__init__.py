@@ -16,6 +16,12 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 def create_app(config=DevConfig):
     app = Flask(__name__)
+    
+    if isinstance(config, str):
+        import importlib
+        config_module = importlib.import_module('config')
+        config = getattr(config_module, config)
+    
     app.config.from_object(config)
 
     db.init_app(app)
