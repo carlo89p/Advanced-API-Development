@@ -1,4 +1,4 @@
-from app import create_app
+from application import create_app
 from models import db, Customer
 from datetime import datetime
 import unittest
