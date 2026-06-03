@@ -69,3 +69,14 @@ class TestInventory(unittest.TestCase):
 
         response = self.client.delete(f'/inventory/{response.json["id"]}')
         self.assertEqual(response.status_code, 200)
+
+    def test_get_inventory(self):
+        response = self.client.get('/inventory/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.json, list)
+
+    def test_get_inventory_item(self):
+        self.client.post('/inventory/', json={"part": "Brake Pads", "quantity": 50, "price": 100.00})
+        response = self.client.get('/inventory/1')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json['part'], 'Brake Pads')

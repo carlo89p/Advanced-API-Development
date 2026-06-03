@@ -49,3 +49,41 @@ class TestCustomer(unittest.TestCase):
         response = self.client.post('/customers/login', json=credentials)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json['status'], 'success')
+
+    def test_get_customers(self):
+        response = self.client.get('/customers/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.json, list)
+
+    def test_get_customer(self):
+        response = self.client.get('/customers/1')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json['email'], 'test@email.com')
+
+    def test_update_customer(self):
+        update_payload = {
+            "name": "Updated Name",
+            "email": "test@email.com",
+            "DOB": "1900-01-01",
+            "phone": "757-555-1234",
+            "address": "123 Main St",
+            "password": "test"
+        }
+        response = self.client.put('/customers/1', json=update_payload)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json['name'], 'Updated Name')
+
+    def test_delete_customer(self):
+        response = self.client.delete('/customers/1')
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_my_tickets(self):
+        headers = {'Authorization': 'Bearer ' + self.token}
+        response = self.client.get('/customers/my-tickets', headers=headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.json, list)
+
+    def test_delete_me(self):
+        headers = {'Authorization': 'Bearer ' + self.token}
+        response = self.client.delete('/customers/me', headers=headers)
+        self.assertEqual(response.status_code, 200)
