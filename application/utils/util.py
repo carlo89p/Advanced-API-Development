@@ -3,13 +3,11 @@ from datetime import datetime, timedelta, timezone
 from jose import jwt
 import jose
 import os 
-from dotenv import load_dotenv
 from functools import wraps
 from flask import request, jsonify
 
-load_dotenv()
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY') or "super secret secrets"
 
 def encode_token(customer_id):
     payload = {
